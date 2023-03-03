@@ -39,7 +39,6 @@ namespace SistemaPlanificacion.AplicacionWeb.Utilidades.Automapper
             #region RolGeneral
             CreateMap<RolGeneral, VMRolGeneral>().ReverseMap();
             #endregion
-
             #region Usuario
             CreateMap<Usuario, VMUsuario>()
                 .ForMember(destino => 
@@ -80,13 +79,18 @@ namespace SistemaPlanificacion.AplicacionWeb.Utilidades.Automapper
                     opt => opt.MapFrom(origen => Convert.ToDecimal(origen.Stock, new CultureInfo("es-BO")))
                 );
             #endregion
-
             #region Menu
             CreateMap<Menu, VMMenu>()
                 .ForMember(destino =>
                     destino.SubMenus,
                     opt => opt.MapFrom(origen => origen.InverseIdmenuPadreNavigation)
                 );
+            #endregion
+            #region CarpetaRequerimiento
+            CreateMap<CarpetaRequerimiento, VMCarpetaRequerimiento>().ReverseMap();
+            #endregion
+            #region DetalleCarpetum
+            CreateMap<DetalleCarpetum, VMDetalleCarpetum>().ReverseMap();
             #endregion
         }
     }

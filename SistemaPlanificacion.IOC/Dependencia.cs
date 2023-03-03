@@ -26,7 +26,8 @@ namespace SistemaPlanificacion.IOC
             });
             services.AddTransient(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 
-            //services.AddScoped<IPlanificacionRepository, PlanificacionRepository>();
+            services.AddScoped<ICarpetaRequerimientoRepository, CarpetaRequerimientoRepository>();
+
 
             services.AddScoped<ICorreoService, CorreoService>();
             services.AddScoped<IFireBaseService, FireBaseService>();
@@ -41,6 +42,7 @@ namespace SistemaPlanificacion.IOC
             services.AddScoped<ICentrosaludService, CentrosaludService>();
             services.AddScoped<IPartidapresupuestariaService, PartidapresupuestariaService>();
             services.AddScoped<ITipodocumentoService, TipodocumentoService>();
+            services.AddScoped<ICarpetaService, CarpetaService>();
         }
     }
 }
