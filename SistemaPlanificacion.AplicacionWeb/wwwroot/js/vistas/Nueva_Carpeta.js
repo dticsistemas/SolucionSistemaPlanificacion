@@ -124,27 +124,23 @@ $(document).ready(function () {
 
 
             let item = {
-                /*id:data.id,
+                /*
+                id:data.id,
                 partida: data.codigo,
                 detalle:uDetalle,
                 unidadMedida:uMedida,
                 cantidad: uCantidad,
                 precioUnitario: uPrecioUnitario,
-                total: (parseFloat(uCantidad) * parseFloat(uPrecioUnitario))*/
-
-                // IdCarpeta:5, 
-                NroCarpeta: 0,
+                total: (parseFloat(uCantidad) * parseFloat(uPrecioUnitario))
+                */
+                IdCarpeta:5, 
                 Partida: '3201',
                 Detalle: 'detalle',
                 UnidadMedida: 'PIEZA',
                 PrecioTotal: 0,
                 MontoPlanificado: 0,
                 MontoPresupuestado: 0,
-                MontoAdjudicado: 0,
-                //FechaCreated:'',
-                //FechaUpdated :'',
-                IdUsuario: 1,
-                Estado: 'A'
+                MontoAdjudicado: 0
             }
             PartidasParaCarpeta.push(item)
 
@@ -200,8 +196,8 @@ $(document).ready(function () {
         const vmDetalleCarpeta = PartidasParaCarpeta;
         const carpetaRequerimiento = {
 
-            // IdCarpeta: 5,// $("#txtNombre").val(), default
-            Codigo: 1200,//$("#txtNombre").val(),
+            IdCarpeta: 5,// $("#txtNombre").val(), default
+            NumeroCarpeta: "1200",//$("#txtNombre").val(),
             IdRegional: 1, //$("#txtNombre").val(),
             CiteUnidadPlanificacion: "SIS 01",// $("#txtCiteUnidadSolicitante").val(), //ok
             TipoSolicitante: 1,//$("#txtNombre").val(),
@@ -215,8 +211,6 @@ $(document).ready(function () {
             MontoTotalPlanificacion: 0,//"", //$("#txtNombre").val(),
             Tipo: "A", //$("#txtNombre").val(),
             Estado: "",//$("#txtNombre").val(),
-            FechaCreated: "",
-            FechaUpdated: "",
             DetalleCarpeta: vmDetalleCarpeta
         }
         console.log(carpetaRequerimiento);
