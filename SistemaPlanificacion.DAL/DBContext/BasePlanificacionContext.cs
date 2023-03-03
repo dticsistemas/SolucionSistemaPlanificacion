@@ -19,6 +19,8 @@ public partial class BasePlanificacionContext : DbContext
 
     public virtual DbSet<Actividad> Actividads { get; set; }
 
+    public virtual DbSet<CarpetaRequerimiento> CarpetaRequerimientos { get; set; }
+
     public virtual DbSet<CentroSalud> CentroSaluds { get; set; }
 
     public virtual DbSet<CierreCarpeta> CierreCarpeta { get; set; }
@@ -26,6 +28,8 @@ public partial class BasePlanificacionContext : DbContext
     public virtual DbSet<Compra> Compras { get; set; }
 
     public virtual DbSet<Configuracion> Configuracions { get; set; }
+
+    public virtual DbSet<DetalleCarpetum> DetalleCarpeta { get; set; }
 
     public virtual DbSet<DetallePlanificacion> DetallePlanificacions { get; set; }
 
@@ -85,6 +89,53 @@ public partial class BasePlanificacionContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
+        });
+        modelBuilder.Entity<CarpetaRequerimiento>(entity =>
+        {
+            entity.HasKey(e => e.IdCarpeta).HasName("PK__carpetaR__B63EC72A3D9B9551");
+
+            entity.ToTable("carpetaRequerimiento");
+
+            entity.Property(e => e.IdCarpeta).HasColumnName("idCarpeta");
+            entity.Property(e => e.CertificadoPoa)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("certificadoPoa");
+            entity.Property(e => e.CiteUnidadPlanificacion)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("citeUnidadPlanificacion");
+            entity.Property(e => e.CodOperacion).HasColumnName("codOperacion");
+            entity.Property(e => e.Estado)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("estado");
+            entity.Property(e => e.FechaRegistro)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("fechaRegistro");
+            entity.Property(e => e.IdActividad).HasColumnName("idActividad");
+            entity.Property(e => e.IdRegional).HasColumnName("idRegional");
+            entity.Property(e => e.MontoTotal)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("montoTotal");
+            entity.Property(e => e.MontoTotalPlanificacion)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("montoTotalPlanificacion");
+            entity.Property(e => e.NumeroCarpeta)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("numeroCarpeta");
+            entity.Property(e => e.Operacion)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.Tipo)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("tipo");
+            entity.Property(e => e.TipoSolicitante).HasColumnName("tipoSolicitante");
+            entity.Property(e => e.UnidadResponsable).HasColumnName("unidadResponsable");
+            entity.Property(e => e.UnidadSolicitante).HasColumnName("unidadSolicitante");
         });
 
         modelBuilder.Entity<CentroSalud>(entity =>
@@ -199,6 +250,44 @@ public partial class BasePlanificacionContext : DbContext
                 .HasMaxLength(60)
                 .IsUnicode(false)
                 .HasColumnName("valor");
+        });
+
+        modelBuilder.Entity<DetalleCarpetum>(entity =>
+        {
+            entity.HasKey(e => e.IdDetalle).HasName("PK__detalleC__49CAE2FB171512F4");
+
+            entity.ToTable("detalleCarpeta");
+
+            entity.Property(e => e.IdDetalle).HasColumnName("idDetalle");
+            entity.Property(e => e.Detalle)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasColumnName("detalle");
+            entity.Property(e => e.IdCarpeta).HasColumnName("idCarpeta");
+            entity.Property(e => e.MontoAdjudicado)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("montoAdjudicado");
+            entity.Property(e => e.MontoPlanificado)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("montoPlanificado");
+            entity.Property(e => e.MontoPresupuestado)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("montoPresupuestado");
+            entity.Property(e => e.Partida)
+                .HasMaxLength(25)
+                .IsUnicode(false)
+                .HasColumnName("partida");
+            entity.Property(e => e.PrecioTotal)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("precioTotal");
+            entity.Property(e => e.UnidadMedida)
+                .HasMaxLength(25)
+                .IsUnicode(false)
+                .HasColumnName("unidadMedida");
+
+            entity.HasOne(d => d.IdCarpetaNavigation).WithMany(p => p.DetalleCarpeta)
+                .HasForeignKey(d => d.IdCarpeta)
+                .HasConstraintName("FK__detalleCa__idCar__0682EC34");
         });
 
         modelBuilder.Entity<DetallePlanificacion>(entity =>

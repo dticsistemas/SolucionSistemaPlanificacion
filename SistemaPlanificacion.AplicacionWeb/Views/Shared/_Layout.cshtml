@@ -55,8 +55,8 @@
                 </a>
                 <div id="collapsePlanificacion" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded-3">
-                        <a class="collapse-item" href="">Planif-Registro Carpeta</a>
-                        <a class="collapse-item" href="">Planif-Reporte Carpetas En Gral.</a>
+                        <a class="collapse-item" href="http://172.25.0.39/planificacion/CarpetaRequerimientoPoa/listarCarpetasRequerimientosPoa">Planif-Registro Carpeta</a>
+                        <a class="collapse-item" href="http://172.25.0.39/planificacion/CertificacionPlanificacionPoa/listarCertificacionPlanificacion">Planif-Certificacion P.O.A. </a>
                         <a class="collapse-item" href="">Planif-Busqueda Por Referencia</a>
                         <a class="collapse-item" href="">Planif-Busqueda Por Empresa</a>
                     </div>
@@ -122,6 +122,7 @@
                         <a class="collapse-item" href="@Url.Action("Index","Centrosalud")">Centros De Salud</a>
                         <a class="collapse-item" href="@Url.Action("Index","Partidapresupuestaria")">Partidas Presupuestarias</a>
                         <a class="collapse-item" href="@Url.Action("Index","Tipodocumento")">Tipos Documentos</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Carpeta")">Nueva Carpeta</a>
                     </div>
                 </div>
             </li>
@@ -170,25 +171,25 @@
 
                         <!-- Nav Item - User Information -->
                         @*<li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Dml Softwares</span>
-                                <img class="img-profile rounded-circle"
-                                     src="~/img/DmlSoftwares.ico">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="@Url.Action("Perfil","Home")">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
-                                </a>
-                            </div>
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Dml Softwares</span>
+                        <img class="img-profile rounded-circle"
+                        src="~/img/DmlSoftwares.ico">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="@Url.Action("Perfil","Home")">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Perfil
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Salir
+                        </a>
+                        </div>
                         </li>*@
                         @await Component.InvokeAsync("MenuUsuario")
                     </ul>
