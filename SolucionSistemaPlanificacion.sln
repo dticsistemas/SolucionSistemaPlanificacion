@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{F99FED4F-B46D-42AB-B759-7DA2578AF2D4}"
 	ProjectSection(SolutionItems) = preProject
 		BackupBD\backupBD_2023_03_06 = BackupBD\backupBD_2023_03_06
+		BackupBD\backupBD_2023_03_06_Script.sql = BackupBD\backupBD_2023_03_06_Script.sql
 	EndProjectSection
 EndProject
 Global
