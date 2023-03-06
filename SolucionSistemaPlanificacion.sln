@@ -13,6 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPlanificacion.IOC", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPlanificacion.AplicacionWeb", "SistemaPlanificacion.AplicacionWeb\SistemaPlanificacion.AplicacionWeb.csproj", "{6E45E8E4-E052-4614-95D2-8EA9A4BC4D0E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{F99FED4F-B46D-42AB-B759-7DA2578AF2D4}"
+	ProjectSection(SolutionItems) = preProject
+		BackupBD\backupBD_2023_03_06 = BackupBD\backupBD_2023_03_06
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

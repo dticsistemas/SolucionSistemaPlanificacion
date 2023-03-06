@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPlanificacion.AplicacionWeb.Models.ViewModels;
 using SistemaPlanificacion.AplicacionWeb.Utilidades.Response;
@@ -8,7 +7,7 @@ using SistemaPlanificacion.Entity;
 
 namespace SistemaPlanificacion.AplicacionWeb.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class CarpetaController : Controller
     {
         private readonly ITipodocumentoService _tipodocumentoService;
@@ -27,9 +26,9 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         {
             return View();
         }
-        public IActionResult HistorialVenta()
+        public IActionResult Historial()
         {
-            return View();
+            return View("Historial'");
         }
         [HttpGet]
         public async Task<IActionResult> ListaTipoDocumentoCarpeta()
