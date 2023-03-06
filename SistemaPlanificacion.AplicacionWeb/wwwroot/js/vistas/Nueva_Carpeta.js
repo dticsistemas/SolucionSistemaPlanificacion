@@ -122,7 +122,6 @@ $(document).ready(function () {
             var uCantidad = $('#txtSwalCantidad').val();
             var uPrecioUnitario = $('#txtSwalPrecioUnitario').val();
 
-
             let item = {
                 /*
                 id:data.id,
@@ -133,14 +132,15 @@ $(document).ready(function () {
                 precioUnitario: uPrecioUnitario,
                 total: (parseFloat(uCantidad) * parseFloat(uPrecioUnitario))
                 */
-                IdCarpeta:5, 
-                Partida: '3201',
-                Detalle: 'detalle',
-                UnidadMedida: 'PIEZA',
-                PrecioTotal: 0,
-                MontoPlanificado: 0,
-                MontoPresupuestado: 0,
-                MontoAdjudicado: 0
+               // idDetalle:214,
+                idCarpeta: 5,
+                partida: data.codigo,
+                detalle: uDetalle,
+                unidadMedida: uMedida,
+                precioTotal: (parseFloat(uCantidad) * parseFloat(uPrecioUnitario)),
+                montoPlanificado: 0,
+                montoPresupuestado: 0,
+                montoAdjudicado: 0
             }
             PartidasParaCarpeta.push(item)
 
@@ -157,23 +157,26 @@ $(document).ready(function () {
 
         cont = 1;
         mTotal = 0;
-        $("#tbProducto tbody").html("")
+        $("#tbProducto tbody").html("");
+        console.log("---Mostrando Items Detallados----");
+        console.log(PartidasParaCarpeta);
+        console.log("---end show----");
         PartidasParaCarpeta.forEach((item) => {
             cont++;
-            mTotal = (mTotal + parseFloat(item.total));
+            mTotal = (mTotal + parseFloat(item.precioTotal));
             $("#tbProducto tbody").append(
                 $("<tr>").append(
                     $("<td>").append(
                         $("<button>").addClass("btn btn-danger btn-eliminar btn-sm").append(
                             $("<i>").addClass("fas fa-trash-alt")
-                        ).data("idDetalle", item.IdCarpeta)
+                        ).data("idDetalle", item.idCarpeta)
                     ),
-                    $("<td>").text(item.Partida),
-                    $("<td>").text(item.Detalle),
-                    $("<td>").text(item.UnidadMedida),
-                    $("<td>").text(item.UnidadMedida),
-                    $("<td>").text(item.PrecioTotal),
-                    $("<td>").text(item.MontoPlanificado)
+                    $("<td>").text(item.partida),
+                    $("<td>").text(item.detalle),
+                    $("<td>").text(item.unidadMedida),
+                    $("<td>").text(item.unidadMedida),
+                    $("<td>").text(item.precioTotal),
+                    $("<td>").text(item.montoPlanificado)
                 )
             )
 
@@ -194,20 +197,22 @@ $(document).ready(function () {
             return;
         }
         const vmDetalleCarpeta = PartidasParaCarpeta;
+      //  alert(vmDetalleCarpeta);
+        console.log(vmDetalleCarpeta);
         const carpetaRequerimiento = {
 
-            IdCarpeta: 5,// $("#txtNombre").val(), default
+            IdCarpeta: 1,// $("#txtNombre").val(), default
             NumeroCarpeta: "1200",//$("#txtNombre").val(),
             IdRegional: 1, //$("#txtNombre").val(),
-            CiteUnidadPlanificacion: "SIS 01",// $("#txtCiteUnidadSolicitante").val(), //ok
+            CiteUnidadPlanificacion: $("#txtCiteUnidadSolicitante").val(), //ok
             TipoSolicitante: 1,//$("#txtNombre").val(),
             UnidadSolicitante: 1, //$("#txtNombre").val(),
             CertificadoPoa: "", ///$("#txtNombre").val(),
             UnidadResponsable: 1, //$("#txtNombre").val(),
-            CodOperacion: 1,// $("#txtCodOperacion").val(), //ok
-            Operacion: "Operacion",//$("#txtOperacion").val(), //ok
+            CodOperacion: $("#txtCodOperacion").val(), //ok
+            Operacion: $("#txtOperacion").val(), //ok
             IdActividad: 1,// $("#txtIdActividad").val(),//ok
-            MontoTotal: 0,//$("#txtTotal").val(),//ok
+            MontoTotal: $("#txtTotal").val(),//ok
             MontoTotalPlanificacion: 0,//"", //$("#txtNombre").val(),
             Tipo: "A", //$("#txtNombre").val(),
             Estado: "",//$("#txtNombre").val(),
@@ -221,24 +226,28 @@ $(document).ready(function () {
             headers: { "Content-Type": "application/json; charset=utf-8" },
             body: JSON.stringify(carpetaRequerimiento)
         }).then(response => {
-            mostrarItemDetalle();
+            console.log("----response: ");
+            console.log(response);
             $("#btnTerminarCarpeta").closest("div.card-body").LoadingOverlay("hide");
-            return response.ok ? response.json() : Promise.reject(response);
-        })
-
-
-        /* .then(responseJson => {
-             if (response.Json.estado) {
-                 PartidasParaCarpeta = [];
-                 mostrarItemDetalle();
-                // $("#txtNombre").val();
-                 //$("#txtNombre").val();
-                // $("#txtNombre").val();
+          //  if (response.ok) {
+                console.log("-Carpeta Registrada-");
+                PartidasParaCarpeta = [];
+                mostrarItemDetalle();
+                swal("Registrado!!", 'Carpeta Registrada', "success")
+            //} else {
+                console.log("-No se pudo registrar Carpeta -");
+            //} 
+            
+            return response.ok ? response.json() : Promise.reject(response);            
+        }).then(responseJson => {
+            console.log("--respuesta Json-");
+            console.log(responseJson);
+             if (responseJson.estado) {                
                  swal("Registrado!", `Numero ID Carpeta : ${responseJason.objeto.idCarpeta}`, "success")
              } else {
                  swal("Lo sentimos!", 'No se pudo registrar la Carpeta', "error")
              }
-         })*/
+         })
 
 
     })

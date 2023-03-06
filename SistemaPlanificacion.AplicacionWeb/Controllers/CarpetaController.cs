@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPlanificacion.AplicacionWeb.Models.ViewModels;
 using SistemaPlanificacion.AplicacionWeb.Utilidades.Response;
@@ -7,6 +8,7 @@ using SistemaPlanificacion.Entity;
 
 namespace SistemaPlanificacion.AplicacionWeb.Controllers
 {
+    [Authorize]
     public class CarpetaController : Controller
     {
         private readonly ITipodocumentoService _tipodocumentoService;
@@ -53,7 +55,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
 
                 modelo = _mapper.Map<VMCarpetaRequerimiento>(carpeta_creada);
                 gResponse.Estado = true;
-                //  gResponse.Objeto = modelo;
+                gResponse.Objeto = modelo;
             }
             catch (Exception ex)
             {

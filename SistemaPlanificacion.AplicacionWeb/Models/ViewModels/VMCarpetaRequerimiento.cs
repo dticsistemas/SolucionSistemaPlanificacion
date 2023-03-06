@@ -36,6 +36,6 @@ namespace SistemaPlanificacion.AplicacionWeb.Models.ViewModels
 
         public DateTime? FechaRegistro { get; set; }
 
-        public virtual ICollection<DetalleCarpetum> DetalleCarpeta { get; } = new List<DetalleCarpetum>();
+        public virtual ICollection<DetalleCarpetum> DetalleCarpeta { get; set; } = new List<DetalleCarpetum>();
     }
 }

@@ -37,6 +37,8 @@ namespace SistemaPlanificacion.DAL.Implementacion
                     string numeroCarpeta = ceros + correlativo.UltimonroCorrelativo.ToString();
                     numeroCarpeta = numeroCarpeta.Substring(numeroCarpeta.Length - correlativo.CantidadDigitos.Value, correlativo.CantidadDigitos.Value);
                     entidad.NumeroCarpeta =numeroCarpeta;
+                    entidad.IdCarpeta = int.Parse(numeroCarpeta);
+
                     await _dbContext.CarpetaRequerimientos.AddAsync(entidad);
                     await _dbContext.SaveChangesAsync();
                     carpetaGenerada = entidad;

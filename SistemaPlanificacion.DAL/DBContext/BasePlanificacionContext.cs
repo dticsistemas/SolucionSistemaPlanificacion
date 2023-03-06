@@ -284,7 +284,6 @@ public partial class BasePlanificacionContext : DbContext
                 .HasMaxLength(25)
                 .IsUnicode(false)
                 .HasColumnName("unidadMedida");
-
             entity.HasOne(d => d.IdCarpetaNavigation).WithMany(p => p.DetalleCarpeta)
                 .HasForeignKey(d => d.IdCarpeta)
                 .HasConstraintName("FK__detalleCa__idCar__0682EC34");
