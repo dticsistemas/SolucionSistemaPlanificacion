@@ -7,6 +7,7 @@
     <!-- ============================================================
     =ESTILOS PARA ESTA PAGINA
     ===============================================================-->
+    <link href="~/vendor/jquery-ui/jquery-ui.css" rel="stylesheet">
     <link href="~/vendor/select2/select2.min.css" rel="stylesheet">
     <style>
         .select2 {
@@ -55,11 +56,11 @@
                                         <thead>
                                             <tr>
                                                 <th>Fecha Registro</th>
-                                                <th>Numero Venta</th>
-                                                <th>Tipo Documento</th>
-                                                <th>Documento Cliente</th>
-                                                <th>Nombre Cliente</th>
-                                                <th>Total</th>
+                                                <th>Numero Carpeta</th>
+                                                <th>Cite Unidad</th>
+                                                <th>Unidad Responsable</th>
+                                                <th>Actividad</th>
+                                                <th>Monto Total</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -165,19 +166,16 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <!-- /.container-fluid -->
-
 
                 @section Scripts{
         <!-- ============================================================
         =SCRIPTS PARA ESTA PAGINA
         ===============================================================-->
 
-        <script src="~/vendor/select2/select2.min.js"></script>
-        <script src="~/vendor/select2/es.min.js"></script>
+        <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+        <script src="~/vendor/jquery-ui/idioma/datepicker-es.js"></script>
         <script src="~/js/vistas/Historial_Carpeta.js"></script>
 }
 

@@ -122,16 +122,7 @@ $(document).ready(function () {
             var uCantidad = $('#txtSwalCantidad').val();
             var uPrecioUnitario = $('#txtSwalPrecioUnitario').val();
 
-            let item = {
-                /*
-                id:data.id,
-                partida: data.codigo,
-                detalle:uDetalle,
-                unidadMedida:uMedida,
-                cantidad: uCantidad,
-                precioUnitario: uPrecioUnitario,
-                total: (parseFloat(uCantidad) * parseFloat(uPrecioUnitario))
-                */
+            let item = {               
                // idDetalle:214,
                 idCarpeta: 5,
                 partida: data.codigo,

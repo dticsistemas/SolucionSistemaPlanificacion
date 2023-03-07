@@ -28,7 +28,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         }
         public IActionResult Historial()
         {
-            return View("Historial'");
+            return View();
         }
         [HttpGet]
         public async Task<IActionResult> ListaTipoDocumentoCarpeta()
@@ -64,7 +64,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
             return StatusCode(StatusCodes.Status200OK, gResponse);
         }
         [HttpGet]
-        public async Task<IActionResult> Historial(string numeroCarpeta, string fechaInicio, string fechaFin)
+        public async Task<IActionResult> Historial_Busqueda(string numeroCarpeta, string fechaInicio, string fechaFin)
         {
             List<VMCarpetaRequerimiento> vmHistorialCarpeta = _mapper.Map<List<VMCarpetaRequerimiento>>(await _capetaService.Historial(numeroCarpeta, fechaInicio, fechaFin));
             return StatusCode(StatusCodes.Status200OK, vmHistorialCarpeta);
