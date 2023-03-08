@@ -41,27 +41,62 @@ $("#cboBuscarPor").change(function () {
 
 $("#btnBuscar").click(function () {
 
+
     if ($("#cboBuscarPor").val() == "fecha") {
-        if ($("txtFechaInicio").val().trim == "" || $("#txtFechaFin").val().trim() == "") {
+        if ( $("#txtFechaInicio").val().trim == "" || $("#txtFechaFin").val().trim() == "") {
             toastr.warning("", "Debe ingresar fecha inicio y fin")
             return;
         }
     } else {
-        if ($("txtNUmeroVenta").val().trim == "") {
+        if ($("#txtNumeroVenta").val().trim == "") {
             toastr.warning("", "Debe ingresar el numero de Carpeta")
             return;
         }
     }
-    let numeroVenta = $("txtNUmeroVenta").val()
-    let fechaInicio = $("txtFechaInicio").val()
-    let fechaFin = $("txtFechaFin").val()
+    let numeroCarpeta = $("#txtNumeroVenta").val()
+    let fechaInicio = $("#txtFechaInicio").val()
+    let fechaFin = $("#txtFechaFin").val()
 
 
+
+    
     $(".card-body").find("div.row").LoadingOverlay("show");
-    fetch('Venta/Historial_Busqueda?numeroCarpeta=$(numeroCarpeta)')
-        .then(response => {
 
+    fetch(`/Carpeta/Historial_Busqueda?numeroCarpeta=${numeroCarpeta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
+        .then(response => {
+            console.log(response);
+            $(".card-body").find("div.row").LoadingOverlay("hide");
+            return response.ok ? response.json() : Promise.reject(response);
         })
+        .then(responseJson => {
+            //-------------------------
+            console.log(responseJson);
+            $("#tbventa tbody").html("");
+            if (responseJson.length > 0) {
+                responseJson.forEach((venta) => {
+                    $("#tbventa tbody").append(
+                        $("<tr>").append(
+                            $("<td>").text(venta.fechaRegistro),
+                            $("<td>").text(venta.numeroCarpeta),
+                            $("<td>").text(venta.citeUnidadPlanificacion),
+                            $("<td>").text(venta.idRegional),
+                            $("<td>").text(venta.idActividad),
+                            $("<td>").text(venta.montoTotal),
+                            $("<td>").append(
+                                $("<button>").addClass("btn btn-info btn-sm").append(
+                                    $("<i>").addClass("fas fa-eye")
+                                ).data("venta", venta)
+                            )
+
+
+                        )
+                    )
+                })
+            }
+
+            //---------------------------
+        })
+
 
 })
 

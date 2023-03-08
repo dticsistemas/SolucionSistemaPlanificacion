@@ -56,35 +56,29 @@ namespace SistemaPlanificacion.BLL.Implementacion
 
             if (fechaInicio != "" && fechaFin != "")
             {
-                DateTime fech_inicio = DateTime.ParseExact(fechaInicio, "dd/MM/YY", new CultureInfo("es-PE"));
-                DateTime fech_fin = DateTime.ParseExact(fechaFin, "dd/MM/YY", new CultureInfo("es-PE"));
+                DateTime fech_inicio = DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime fech_fin = DateTime.ParseExact(fechaFin, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
                 return query.Where(v =>
                     v.FechaRegistro.Value.Date >= fech_inicio.Date &&
                     v.FechaRegistro.Value.Date <= fech_fin.Date
                 )
-                    //.Include(tdv => tdv.IdTipoDocuemnt);
-                    //
-                    .Include(dv => dv.DetalleCarpeta)
+                    // .Include(tdv => tdv.IdTipoDocuemnt)                    
+                    // .Include(dv => dv.DetalleCarpeta)
                     .ToList();
             }
             else
             {
                 return query.Where(v => v.NumeroCarpeta == numeroCarpeta
                 )
-                    //.Include(tdv => tdv.IdTipoDocuemnt);
-                    //
-                    .Include(dv => dv.DetalleCarpeta)
+                    //.Include(tdv => tdv.IdTipoDocument)                    
+                    //.Include(dv => dv.DetalleCarpeta)
                     .ToList();
             }
-
-
-
         }
         public async Task<CarpetaRequerimiento> Detalle(string numeroCarpeta)
         {
             IQueryable<CarpetaRequerimiento> query = await _repositorioCarpeta.Consultar(v => v.NumeroCarpeta == numeroCarpeta);
-
             return query
                 .Include(dv => dv.DetalleCarpeta)
                 .First();

@@ -66,7 +66,9 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Historial_Busqueda(string numeroCarpeta, string fechaInicio, string fechaFin)
         {
-            List<VMCarpetaRequerimiento> vmHistorialCarpeta = _mapper.Map<List<VMCarpetaRequerimiento>>(await _capetaService.Historial(numeroCarpeta, fechaInicio, fechaFin));
+            Console.Write(fechaInicio);
+            Console.Write(fechaFin);
+            List<VMCarpetaRequerimiento> vmHistorialCarpeta = _mapper.Map<List<VMCarpetaRequerimiento>>(await _capetaService.Historial(numeroCarpeta, fechaInicio.Trim(), fechaFin.Trim()));
             return StatusCode(StatusCodes.Status200OK, vmHistorialCarpeta);
         }
 
