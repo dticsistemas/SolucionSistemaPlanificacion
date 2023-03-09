@@ -96,7 +96,38 @@ $("#btnBuscar").click(function () {
 
             //---------------------------
         })
+})
 
+$("#tbventa tbody").on("click", ".btn-info", function () {
+    let d = $(this).data("venta")
 
+    
+    
+    $("#txtFechaRegistro").val(d.fechaRegistro)
+    $("#txtNumVenta").val(d.numeroCarpeta)
+    $("#txtUsuarioRegistro").val(d.idRegional)
+    $("#txtTipoDocumento").val(d.citeUnidadPlanificacion)
+    $("#txtDocumentoCliente").val(d.operacion)
+    $("#txtNombreCliente").val(d.unidadResponsable)
+    $("#txtSubTotal").val(d.tipo)
+    $("#txtIGV").val(d.estado)
+    $("#txtTotal").val(d.montoTotal)
+
+    $("#tbProductos tbody").html("")
+    cont = 0;
+    d.detalleCarpeta.forEach((item) => {
+        cont++;
+        $("#tbProductos tbody").append(
+            $("<tr>").append(
+                $("<td>").text(cont),
+                $("<td>").text(item.detalle),
+                $("<td>").text(item.partida),
+                $("<td>").text(item.unidadMedida),
+                $("<td>").text(item.precioTotal)
+            )
+        )
+    })
+    $("#linkImprimir").attr("href",`/Carpeta/MostrarPDFCarpeta?numeroCarpeta=${d.numeroCarpeta}`);
+    $("#modalData").modal("show");
 })
 

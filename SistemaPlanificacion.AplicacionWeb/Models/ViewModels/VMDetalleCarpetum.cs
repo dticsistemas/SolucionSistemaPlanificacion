@@ -22,6 +22,6 @@ namespace SistemaPlanificacion.AplicacionWeb.Models.ViewModels
 
         public decimal? MontoAdjudicado { get; set; }
 
-      //  public virtual CarpetaRequerimiento? IdCarpetaNavigation { get; set; }
+        public virtual CarpetaRequerimiento? IdCarpetaNavigation { get; set; }
     }
 }

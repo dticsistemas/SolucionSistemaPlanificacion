@@ -64,7 +64,7 @@ namespace SistemaPlanificacion.BLL.Implementacion
                     v.FechaRegistro.Value.Date <= fech_fin.Date
                 )
                     // .Include(tdv => tdv.IdTipoDocuemnt)                    
-                    // .Include(dv => dv.DetalleCarpeta)
+                     .Include(dv => dv.DetalleCarpeta)
                     .ToList();
             }
             else
@@ -72,7 +72,7 @@ namespace SistemaPlanificacion.BLL.Implementacion
                 return query.Where(v => v.NumeroCarpeta == numeroCarpeta
                 )
                     //.Include(tdv => tdv.IdTipoDocument)                    
-                    //.Include(dv => dv.DetalleCarpeta)
+                    .Include(dv => dv.DetalleCarpeta)
                     .ToList();
             }
         }

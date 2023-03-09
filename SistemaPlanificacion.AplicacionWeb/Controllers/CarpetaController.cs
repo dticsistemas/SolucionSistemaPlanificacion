@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPlanificacion.AplicacionWeb.Models.ViewModels;
 using SistemaPlanificacion.AplicacionWeb.Utilidades.Response;
@@ -13,13 +15,15 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         private readonly ITipodocumentoService _tipodocumentoService;
         private readonly ICarpetaService _capetaService;
         private readonly IMapper _mapper;
+        private readonly IConverter _converter;
 
 
-        public CarpetaController(ITipodocumentoService tipodocumento, ICarpetaService carpetaService, IMapper mapper)
+        public CarpetaController(ITipodocumentoService tipodocumento, ICarpetaService carpetaService, IMapper mapper, IConverter converter)
         {
             _tipodocumentoService = tipodocumento;
             _capetaService = carpetaService;
             _mapper = mapper;
+            _converter = converter;
 
         }
         public IActionResult Index()
@@ -66,10 +70,36 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Historial_Busqueda(string numeroCarpeta, string fechaInicio, string fechaFin)
         {
-            Console.Write(fechaInicio);
-            Console.Write(fechaFin);
-            List<VMCarpetaRequerimiento> vmHistorialCarpeta = _mapper.Map<List<VMCarpetaRequerimiento>>(await _capetaService.Historial(numeroCarpeta, fechaInicio.Trim(), fechaFin.Trim()));
+            if(fechaInicio!=null)
+                fechaInicio = fechaInicio.Trim();
+            if(fechaFin!=null)
+                fechaFin = fechaFin.Trim();
+            var service = await _capetaService.Historial(numeroCarpeta, fechaInicio, fechaFin);
+            List<VMCarpetaRequerimiento> vmHistorialCarpeta = _mapper.Map<List<VMCarpetaRequerimiento>>(service);
             return StatusCode(StatusCodes.Status200OK, vmHistorialCarpeta);
+        }
+
+        public IActionResult MostrarPDFCarpeta(string numeroCarpeta)
+        {
+            string urlPlantillaVista = $"{this.Request.Scheme}://{this.Request.Host}/Plantilla/PDFCarpeta?numeroCarpeta={numeroCarpeta}";
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = new GlobalSettings()
+                {
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait,
+                },
+                Objects =
+                {
+                    new ObjectSettings()
+                    {
+                        Page = urlPlantillaVista
+                    }
+                }
+            };
+
+            var archivoPDF = _converter.Convert(pdf);
+            return File(archivoPDF, "application/pdf");
         }
 
     }

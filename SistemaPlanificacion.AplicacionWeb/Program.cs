@@ -10,11 +10,19 @@ using SistemaPlanificacion.IOC;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SistemaPlanificacion.AplicacionWeb.Controllers;
+using System.Text.Json.Serialization;
+using SistemaPlanificacion.AplicacionWeb.Utilidades.Extensiones;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews();/*.AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    );*/
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>
     {
@@ -26,9 +34,14 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.InyectarDependencia(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
+var context = new CustomAssemblyLoadContext();
+context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "Utilidades/LibreriaPDF/libwkhtmltox.dll"));
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
