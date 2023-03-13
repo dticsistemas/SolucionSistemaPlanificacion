@@ -126,8 +126,10 @@ $(document).ready(function () {
                // idDetalle:214,
                 idCarpeta: 5,
                 partida: data.codigo,
+                cantidad: parseInt(uCantidad),
                 detalle: uDetalle,
                 unidadMedida: uMedida,
+                precioUnitario: parseFloat(uPrecioUnitario),
                 precioTotal: (parseFloat(uCantidad) * parseFloat(uPrecioUnitario)),
                 montoPlanificado: 0,
                 montoPresupuestado: 0,
@@ -195,18 +197,22 @@ $(document).ready(function () {
             IdCarpeta: 1,// $("#txtNombre").val(), default
             NumeroCarpeta: "1200",//$("#txtNombre").val(),
             IdRegional: 1, //$("#txtNombre").val(),
+            Lugar:'SANTA CRUZ',
             CiteUnidadPlanificacion: $("#txtCiteUnidadSolicitante").val(), //ok
             TipoSolicitante: 1,//$("#txtNombre").val(),
             UnidadSolicitante: 1, //$("#txtNombre").val(),
             CertificadoPoa: "", ///$("#txtNombre").val(),
             UnidadResponsable: 1, //$("#txtNombre").val(),
-            CodOperacion: $("#txtCodOperacion").val(), //ok
-            Operacion: $("#txtOperacion").val(), //ok
+            CodOperacion: 1, //ok
+            Operacion: "Operacion", //ok
             IdActividad: 1,// $("#txtIdActividad").val(),//ok
-            MontoTotal: $("#txtTotal").val(),//ok
+            MontoTotal: parseFloat($("#txtTotal").val()),//ok
             MontoTotalPlanificacion: 0,//"", //$("#txtNombre").val(),
+            MontoTotalPresupuesto: 0,
+            MontoTotalCompras: 0,
             Tipo: "A", //$("#txtNombre").val(),
-            Estado: "",//$("#txtNombre").val(),
+            EstadoCarpeta: "A",//$("#txtNombre").val(),
+            IdUnidadProceso:1,
             DetalleCarpeta: vmDetalleCarpeta
         }
         console.log(carpetaRequerimiento);

@@ -101,20 +101,25 @@ public partial class BasePlanificacionContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("certificadoPoa");
+            entity.Property(e => e.Lugar)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("lugar");
             entity.Property(e => e.CiteUnidadPlanificacion)
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("citeUnidadPlanificacion");
             entity.Property(e => e.CodOperacion).HasColumnName("codOperacion");
-            entity.Property(e => e.Estado)
+            entity.Property(e => e.EstadoCarpeta)
                 .HasMaxLength(10)
                 .IsUnicode(false)
-                .HasColumnName("estado");
+                .HasColumnName("estadoCarpeta");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.IdActividad).HasColumnName("idActividad");
+            entity.Property(e => e.IdUnidadProceso).HasColumnName("idUnidadProceso");
             entity.Property(e => e.IdRegional).HasColumnName("idRegional");
             entity.Property(e => e.MontoTotal)
                 .HasColumnType("decimal(10, 2)")
@@ -122,6 +127,12 @@ public partial class BasePlanificacionContext : DbContext
             entity.Property(e => e.MontoTotalPlanificacion)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("montoTotalPlanificacion");
+            entity.Property(e => e.MontoTotalPresupuesto)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("montoTotalPresupuesto");
+            entity.Property(e => e.MontoTotalCompras)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("montoTotalCompras");
             entity.Property(e => e.NumeroCarpeta)
                 .HasMaxLength(6)
                 .IsUnicode(false)
@@ -264,6 +275,7 @@ public partial class BasePlanificacionContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("detalle");
             entity.Property(e => e.IdCarpeta).HasColumnName("idCarpeta");
+            entity.Property(e => e.Cantidad).HasColumnName("cantidad");
             entity.Property(e => e.MontoAdjudicado)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("montoAdjudicado");
@@ -277,6 +289,9 @@ public partial class BasePlanificacionContext : DbContext
                 .HasMaxLength(25)
                 .IsUnicode(false)
                 .HasColumnName("partida");
+            entity.Property(e => e.PrecioUnitario)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("precioUnitario");
             entity.Property(e => e.PrecioTotal)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("precioTotal");

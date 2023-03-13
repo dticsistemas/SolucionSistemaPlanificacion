@@ -10,6 +10,8 @@ namespace SistemaPlanificacion.AplicacionWeb.Models.ViewModels
 
         public int? IdRegional { get; set; }
 
+        public string? Lugar { get; set; }
+
         public string? CiteUnidadPlanificacion { get; set; }
 
         public int? TipoSolicitante { get; set; }
@@ -30,11 +32,17 @@ namespace SistemaPlanificacion.AplicacionWeb.Models.ViewModels
 
         public decimal? MontoTotalPlanificacion { get; set; }
 
+        public decimal? MontoTotalPresupuesto { get; set; }
+
+        public decimal? MontoTotalCompras { get; set; }
+
         public string? Tipo { get; set; }
 
-        public string? Estado { get; set; }
+        public string? EstadoCarpeta { get; set; }
 
         public DateTime? FechaRegistro { get; set; }
+
+        public int? IdUnidadProceso { get; set; }
 
         public virtual ICollection<DetalleCarpetum> DetalleCarpeta { get; set; } = new List<DetalleCarpetum>();
     }

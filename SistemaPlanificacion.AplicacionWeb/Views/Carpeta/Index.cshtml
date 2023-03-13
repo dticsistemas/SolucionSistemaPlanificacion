@@ -15,72 +15,13 @@
     </style>
 }
 
-
+<div class="text-center">
+        <h2>SOLICITUD DE CERTIFICACION POA </h2>
+</div>
 
     <div class="row">
 
-        <div class="col-sm-4">
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 bg-second-primary">
-                            <h6 class="m-0 font-weight-bold text-white">I. UNIDAD ORGANIZACIONAL SOLICITANTE</h6>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupSubTotal">Regional</span>
-                                </div>
-                                <input type="text" class="form-control text-right" aria-label="Small" aria-describedby="inputGroupSubTotal" id="txtIdRegional" value="SANTA CRUZ" disabled>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupIGV">Unidad Ejecutora</span>
-                                </div>
-                                <input type="text" class="form-control text-right" aria-label="Small" aria-describedby="inputGroupIGV" id="txtUnidadEjecutora" value="REGIONAL SANTA CRUZ" disabled>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="cboTipoDocumentoVenta">UNIDAD ADMINISTRATIVA</label>
-                                </div>
-                                <select class="custom-select" id="txtUnidadAdministrativa">
-                                </select>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="txtUnidadResponsable">UNIDAD RESPONSABLE</label>
-                                </div>
-                                <select class="custom-select" id="txtUnidadResponsable">
-                                </select>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupTotal">MONTO TOTAL</span>
-                                </div>
-                                <input type="text" class="form-control text-right" aria-label="Small" aria-describedby="inputGroupTotal" id="txtTotal" disabled>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <div class="form-group mb-0">
-                                <button class="btn btn-success btn-sm btn-block" id="btnTerminarCarpeta">Terminar Carpeta de Requerimiento</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+       
         <div class="col-sm-8">
             <div class="row">
                 <div class="col-sm-12">
@@ -90,25 +31,45 @@
                         </div>
                         <div class="card-body">
                             <div class="form-row">
+                                <label>CITE: </label>
                                 <div class="form-group col-sm-6">
                                     <input type="text" class="form-control form-control-sm" id="txtCiteUnidadSolicitante" placeholder="Cite Unidad Solicitante">
                                 </div>
                             </div>
                             <div class="form-row">
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        Lugar :&nbsp;&nbsp;&nbsp;
+                                        <select class="form-control" id="cboBuscarLugar">
+                                            <option value="0">Santa Cruz</option>
+                                        </select>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        Fecha: &nbsp;
+                                        <span class="input-group-addon">&nbsp;-&nbsp;</span>
+                                        <input type="date" class="form-control" id="txtFechaRegistro" placeholder="Fecha Registro">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!--<div class="form-row">
                                 <div class="form-group col-sm-4">
                                     <input type="text" class="form-control form-control-sm" id="txtCodOperacion" placeholder="Cod.Ope.">
                                 </div>
                                 <div class="form-group col-sm-8">
                                     <input type="text" class="form-control form-control-sm" id="txtOperacion" placeholder="Operación">
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-row">
                                 <!--<div class="form-group col-sm-4">
                                     <input type="text" class="form-control form-control-sm" id="txtIdActividad" placeholder="Cod.Act.">
                                 </div>-->
-                                <div class="form-group col-sm-8">
+                                <!--<div class="form-group col-sm-8">
                                     <input type="text" class="form-control form-control-sm" id="txtIdActividad" placeholder="ID Actividad">
-                                </div>
+                                </div>-->
                             </div>
 
                         </div>
@@ -154,6 +115,75 @@
                 </div>
             </div>
 
+        </div>
+
+
+        <div class="col-sm-4">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 bg-second-primary">
+                            <h6 class="m-0 font-weight-bold text-white">I. UNIDAD ORGANIZACIONAL SOLICITANTE</h6>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupSubTotal">Regional</span>
+                                </div>
+                                <input type="text" class="form-control text-right" aria-label="Small" aria-describedby="inputGroupSubTotal" id="txtIdRegional" value="SANTA CRUZ" disabled>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupIGV">Unidad Ejecutora</span>
+                                </div>
+                                <input type="text" class="form-control text-right" aria-label="Small" aria-describedby="inputGroupIGV" id="txtUnidadEjecutora" value="REGIONAL SANTA CRUZ" disabled>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="cboTipoDocumentoVenta">UNIDAD ADMINISTRATIVA</label>
+                                </div>
+                                <select class="custom-select" id="txtUnidadAdministrativa">
+                                </select>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="cboTipoDocumentoVenta">UNIDAD ADMINISTRATIVA/EST.DE SALUD</label>
+                                </div>
+                                <select class="custom-select" id="txtUnidadAdministrativa">
+                                </select>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="txtUnidadResponsable">PROGRAMA/PROY.INVERSION</label>
+                                </div>
+                                <select class="custom-select" id="txtUnidadResponsable">
+                                </select>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupTotal">MONTO TOTAL</span>
+                                </div>
+                                <input type="text" class="form-control text-right" aria-label="Small" aria-describedby="inputGroupTotal" id="txtTotal" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="form-group mb-0">
+                                <button class="btn btn-success btn-sm btn-block" id="btnTerminarCarpeta">Terminar Carpeta de Requerimiento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

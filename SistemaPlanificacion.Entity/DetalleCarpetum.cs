@@ -14,9 +14,13 @@ namespace SistemaPlanificacion.Entity
 
         public string? Partida { get; set; }
 
+        public int? Cantidad { get; set; }
+
         public string? Detalle { get; set; }
 
         public string? UnidadMedida { get; set; }
+
+        public decimal? PrecioUnitario  { get; set; }
 
         public decimal? PrecioTotal { get; set; }
 

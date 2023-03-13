@@ -19,6 +19,26 @@
 
 $(document).ready(function () {
 
+    tablaData = $('#tbventa').DataTable({
+        responsive: true,               
+        order: [[0, "desc"]],
+        dom: "Bfrtip",
+        buttons: [
+            {
+                text: 'Exportar Excel',
+                extend: 'excelHtml5',
+                title: '',
+                filename: 'Reporte Empresas',
+                exportOptions: {
+                    columns: [1, 2, 3,4,5,6]
+                }
+            }, 'pageLength'
+        ],
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        }
+    });
+
 
     VISTA_BUSQUEDA["busquedaFecha"]()
 
@@ -71,26 +91,23 @@ $("#btnBuscar").click(function () {
         .then(responseJson => {
             //-------------------------
             console.log(responseJson);
-            $("#tbventa tbody").html("");
+            //$("#tbventa tbody").html("");
+            $("#tbventa").DataTable().clear().draw();
             if (responseJson.length > 0) {
+                var counter = 0;
                 responseJson.forEach((venta) => {
-                    $("#tbventa tbody").append(
-                        $("<tr>").append(
-                            $("<td>").text(venta.fechaRegistro),
-                            $("<td>").text(venta.numeroCarpeta),
-                            $("<td>").text(venta.citeUnidadPlanificacion),
-                            $("<td>").text(venta.idRegional),
-                            $("<td>").text(venta.idActividad),
-                            $("<td>").text(venta.montoTotal),
-                            $("<td>").append(
-                                $("<button>").addClass("btn btn-info btn-sm").append(
-                                    $("<i>").addClass("fas fa-eye")
-                                ).data("venta", venta)
-                            )
-
-
-                        )
-                    )
+                    counter++;
+                    $("#tbventa").DataTable().row.add([
+                        venta.fechaRegistro,
+                        venta.numeroCarpeta,
+                        venta.citeUnidadPlanificacion,
+                        venta.idRegional,
+                        venta.idActividad,
+                        venta.montoTotal,
+                        "<button id='btnRow_" + counter + "' class='btn btn-info btn-sm'><i class='fas fa-eye' </buttton>"
+                    ]).draw(true);
+                    $("#btnRow_" + counter).data("venta", venta);
+                    
                 })
             }
 
@@ -99,10 +116,7 @@ $("#btnBuscar").click(function () {
 })
 
 $("#tbventa tbody").on("click", ".btn-info", function () {
-    let d = $(this).data("venta")
-
-    
-    
+    let d = $(this).data("venta")    
     $("#txtFechaRegistro").val(d.fechaRegistro)
     $("#txtNumVenta").val(d.numeroCarpeta)
     $("#txtUsuarioRegistro").val(d.idRegional)
