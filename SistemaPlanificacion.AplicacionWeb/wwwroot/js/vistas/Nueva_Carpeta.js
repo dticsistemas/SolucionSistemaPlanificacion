@@ -16,6 +16,20 @@ let PartidasParaCarpeta = [];
 
 $(document).ready(function () {
 
+    fetch("/Carpeta/ListaUnidadresponsable")
+        .then(response => {
+            return response.ok ? response.json() : Promise.reject(response);
+        })
+        .then(responseJson => {
+            if (responseJson.length > 0) {
+                responseJson.forEach((item) => {
+                    $("#cboBuscarUnidadResponsable").append(
+                        $("<option>").val(item.idUnidad).text(item.nombre)
+                    )
+                })
+            }
+        })
+
     fetch("/Carpeta/ListaTipoDocumentoCarpeta")
         .then(response => {
             return response.ok ? response.json() : Promise.reject(response);
@@ -201,16 +215,16 @@ $(document).ready(function () {
             CiteUnidadPlanificacion: $("#txtCiteUnidadSolicitante").val(), //ok
             TipoSolicitante: 1,//$("#txtNombre").val(),
             UnidadSolicitante: 1, //$("#txtNombre").val(),
-            CertificadoPoa: "", ///$("#txtNombre").val(),
+            CertificadoPoa: "", //$("#txtNombre").val(),
             UnidadResponsable: 1, //$("#txtNombre").val(),
             CodOperacion: 1, //ok
             Operacion: "Operacion", //ok
-            IdActividad: 1,// $("#txtIdActividad").val(),//ok
+            IdActividad: 3,// $("#txtIdActividad").val(),//ok
             MontoTotal: parseFloat($("#txtTotal").val()),//ok
             MontoTotalPlanificacion: 0,//"", //$("#txtNombre").val(),
             MontoTotalPresupuesto: 0,
             MontoTotalCompras: 0,
-            Tipo: "A", //$("#txtNombre").val(),
+            Tipo: "A", // $("#txtNombre").val(),
             EstadoCarpeta: "A",//$("#txtNombre").val(),
             IdUnidadProceso:1,
             DetalleCarpeta: vmDetalleCarpeta

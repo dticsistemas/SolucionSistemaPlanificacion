@@ -92,6 +92,9 @@ namespace SistemaPlanificacion.AplicacionWeb.Utilidades.Automapper
             #region DetalleCarpetum
             CreateMap<DetalleCarpetum, VMDetalleCarpetum>().ReverseMap();
             #endregion
+            #region UnidadResponsable
+            CreateMap<UnidadResponsable, VMUnidadResponsable>().ReverseMap();
+            #endregion
         }
     }
 }

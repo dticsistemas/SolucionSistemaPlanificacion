@@ -13,6 +13,8 @@ public partial class Actividad
 
     public DateTime? FechaRegistro { get; set; }
 
+    public virtual ICollection<CarpetaRequerimiento> CarpetaRequerimientos { get; } = new List<CarpetaRequerimiento>();
+
     public virtual ICollection<DocmPlanificacion> DocmPlanificacions { get; } = new List<DocmPlanificacion>();
 
     public virtual ICollection<Planificacion> Planificacions { get; } = new List<Planificacion>();

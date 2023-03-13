@@ -14,16 +14,18 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
     {
         private readonly ITipodocumentoService _tipodocumentoService;
         private readonly ICarpetaService _capetaService;
+        private readonly IUnidadresponsableService _unidadResponsableServicio;
         private readonly IMapper _mapper;
         private readonly IConverter _converter;
 
 
-        public CarpetaController(ITipodocumentoService tipodocumento, ICarpetaService carpetaService, IMapper mapper, IConverter converter)
+        public CarpetaController(ITipodocumentoService tipodocumento, ICarpetaService carpetaService, IUnidadresponsableService unidadResponsableServicio, IMapper mapper, IConverter converter)
         {
             _tipodocumentoService = tipodocumento;
             _capetaService = carpetaService;
             _mapper = mapper;
             _converter = converter;
+            _unidadResponsableServicio = unidadResponsableServicio;
 
         }
         public IActionResult Index()
@@ -100,6 +102,13 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
 
             var archivoPDF = _converter.Convert(pdf);
             return File(archivoPDF, "application/pdf");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListaUnidadresponsable()
+        {
+            List<VMUnidadResponsable> vmListaUnidadesResponsables = _mapper.Map<List<VMUnidadResponsable>>(await _unidadResponsableServicio.Lista());
+            return StatusCode(StatusCodes.Status200OK, vmListaUnidadesResponsables);
         }
 
     }

@@ -43,6 +43,8 @@ namespace SistemaPlanificacion.IOC
             services.AddScoped<IPartidapresupuestariaService, PartidapresupuestariaService>();
             services.AddScoped<ITipodocumentoService, TipodocumentoService>();
             services.AddScoped<ICarpetaService, CarpetaService>();
+            services.AddScoped<IUnidadresponsableService, UnidadResponsableService>();
+
         }
     }
 }

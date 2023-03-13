@@ -49,5 +49,7 @@ namespace SistemaPlanificacion.Entity
         public int? IdUnidadProceso { get; set; }
 
         public virtual ICollection<DetalleCarpetum> DetalleCarpeta { get; set; } = new List<DetalleCarpetum>();
+
+        public virtual Actividad IdActividadNavigation { get; set; } = null!;
     }
 }

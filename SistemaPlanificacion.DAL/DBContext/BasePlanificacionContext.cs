@@ -67,6 +67,8 @@ public partial class BasePlanificacionContext : DbContext
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
+    public virtual DbSet<UnidadResponsable> UnidadResponsables{ get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Actividad>(entity =>
@@ -147,6 +149,13 @@ public partial class BasePlanificacionContext : DbContext
             entity.Property(e => e.TipoSolicitante).HasColumnName("tipoSolicitante");
             entity.Property(e => e.UnidadResponsable).HasColumnName("unidadResponsable");
             entity.Property(e => e.UnidadSolicitante).HasColumnName("unidadSolicitante");
+
+            entity.HasOne(d => d.IdActividadNavigation).WithMany(p => p.CarpetaRequerimientos)
+               .HasForeignKey(d => d.IdActividad)
+               .OnDelete(DeleteBehavior.ClientSetNull)
+               .HasConstraintName("FK_carpetaRequerimiento_actividad");
+
+
         });
 
         modelBuilder.Entity<CentroSalud>(entity =>
@@ -871,6 +880,30 @@ public partial class BasePlanificacionContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_IdRolNavigation");
         });
+
+        modelBuilder.Entity<UnidadResponsable>(entity =>
+        {
+            entity.HasKey(e => e.IdUnidad);
+
+            entity.ToTable("unidadResponsable");
+
+            entity.Property(e => e.IdUnidad).HasColumnName("idUnidad");
+            entity.Property(e => e.Codigo)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("codigo");
+            entity.Property(e => e.EsActivo).HasColumnName("esActivo");
+            entity.Property(e => e.FechaRegistro)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("fechaRegistro");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+        });
+
+
 
         OnModelCreatingPartial(modelBuilder);
     }
