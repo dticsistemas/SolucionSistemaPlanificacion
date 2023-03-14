@@ -15,17 +15,19 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         private readonly ITipodocumentoService _tipodocumentoService;
         private readonly ICarpetaService _capetaService;
         private readonly IUnidadresponsableService _unidadResponsableServicio;
+        private readonly IProgramaService _programaServicio;
         private readonly IMapper _mapper;
         private readonly IConverter _converter;
 
 
-        public CarpetaController(ITipodocumentoService tipodocumento, ICarpetaService carpetaService, IUnidadresponsableService unidadResponsableServicio, IMapper mapper, IConverter converter)
+        public CarpetaController(ITipodocumentoService tipodocumento, ICarpetaService carpetaService, IUnidadresponsableService unidadResponsableServicio, IProgramaService programaServicio, IMapper mapper, IConverter converter)
         {
             _tipodocumentoService = tipodocumento;
             _capetaService = carpetaService;
             _mapper = mapper;
             _converter = converter;
             _unidadResponsableServicio = unidadResponsableServicio;
+            _programaServicio = programaServicio;
 
         }
         public IActionResult Index()
@@ -109,6 +111,12 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         {
             List<VMUnidadResponsable> vmListaUnidadesResponsables = _mapper.Map<List<VMUnidadResponsable>>(await _unidadResponsableServicio.Lista());
             return StatusCode(StatusCodes.Status200OK, vmListaUnidadesResponsables);
+        }
+        [HttpGet]
+        public async Task<IActionResult> ListaPrograma()
+        {
+            List<VMPrograma> vmListaProgramas = _mapper.Map<List<VMPrograma>>(await _programaServicio.Lista());
+            return StatusCode(StatusCodes.Status200OK, vmListaProgramas);
         }
 
     }

@@ -23,13 +23,25 @@ $(document).ready(function () {
         .then(responseJson => {
             if (responseJson.length > 0) {
                 responseJson.forEach((item) => {
-                    $("#cboBuscarUnidadResponsable").append(
+                    $("#cboUnidadResponsable").append(
                         $("<option>").val(item.idUnidad).text(item.nombre)
                     )
                 })
             }
         })
-
+    fetch("/Carpeta/ListaPrograma")
+        .then(response => {
+            return response.ok ? response.json() : Promise.reject(response);
+        })
+        .then(responseJson => {
+            if (responseJson.length > 0) {
+                responseJson.forEach((item) => {
+                    $("#cboPrograma").append(
+                        $("<option>").val(item.idUnidad).text(item.nombre)
+                    )
+                })
+            }
+        })
     fetch("/Carpeta/ListaTipoDocumentoCarpeta")
         .then(response => {
             return response.ok ? response.json() : Promise.reject(response);
@@ -181,9 +193,9 @@ $(document).ready(function () {
                     $("<td>").text(item.partida),
                     $("<td>").text(item.detalle),
                     $("<td>").text(item.unidadMedida),
-                    $("<td>").text(item.unidadMedida),
-                    $("<td>").text(item.precioTotal),
-                    $("<td>").text(item.montoPlanificado)
+                    $("<td>").text(item.cantidad),
+                    $("<td>").text(item.precioUnitario),
+                    $("<td>").text(item.precioTotal)
                 )
             )
 

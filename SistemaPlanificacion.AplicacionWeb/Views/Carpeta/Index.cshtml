@@ -31,9 +31,13 @@
                         </div>
                         <div class="card-body">
                             <div class="form-row">
-                                <label>CITE: </label>
-                                <div class="form-group col-sm-6">
-                                    <input type="text" class="form-control form-control-sm" id="txtCiteUnidadSolicitante" placeholder="Cite Unidad Solicitante">
+                                <div class="form-group col-sm-9">
+                                    </div>
+                                <div class="form-group col-sm-3">
+                                    <div class="input-group">
+                                        <label>CITE: &nbsp; </label>
+                                        <input type="text" class="form-control form-control-sm" id="txtCiteUnidadSolicitante" placeholder="Cite Unidad Solicitante">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -49,7 +53,7 @@
                                 <div class="col-sm-4">
                                     <div class="input-group">
                                         Fecha: &nbsp;
-                                        <span class="input-group-addon">&nbsp;-&nbsp;</span>
+                                        <span class="input-group-addon">&nbsp;</span>
                                         <input type="date" class="form-control" id="txtFechaRegistro" placeholder="Fecha Registro">
                                     </div>
                                 </div>
@@ -130,35 +134,43 @@
 
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupSubTotal">Regional</span>
+                                    <span class="input-group-text" id="inputGroupSubTotal">Regional/Departamento</span>
                                 </div>
-                                <input type="text" class="form-control text-right" aria-label="Small" aria-describedby="inputGroupSubTotal" id="txtIdRegional" value="SANTA CRUZ" disabled>
+                                <select class="custom-select" id="cboRegional">
+                                    <option value="1">07 SANTA CRUZ</option>
+                                </select>
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupIGV">Unidad Ejecutora</span>
                                 </div>
-                                <input type="text" class="form-control text-right" aria-label="Small" aria-describedby="inputGroupIGV" id="txtUnidadEjecutora" value="REGIONAL SANTA CRUZ" disabled>
+                                <select class="custom-select" id="cboUnidadEjecutora">
+                                    <option value="1">007 REGIONAL SANTA CRUZ</option>
+                                </select>
+
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="cboTipoDocumentoVenta">UNIDAD ADMINISTRATIVA</label>
+                                    <label class="input-group-text" for="cboTipoDocumentoVenta">Tipo Programa</label>
                                 </div>
-                                <select class="custom-select" id="txtUnidadAdministrativa">
+                                <select class="custom-select" id="cboTipoPrograma">
+                                    <option value="1">ESTABLECIMIENTO DE SALUD</option>
+                                    <option value="2">UNIDAD ADMINISTRATIVA</option>
+                                    <option value="3">PROGRAMA/ PROY. INVERSION</option>
                                 </select>
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="cboTipoDocumentoVenta">UNIDAD ADMINISTRATIVA/EST.DE SALUD</label>
+                                    <label class="input-group-text" for="cboTipoDocumentoVenta">Establecimiento de Salud</label>
                                 </div>
-                                <select class="custom-select" id="txtUnidadAdministrativa">
+                                <select class="custom-select" id="cboPrograma">                                   
                                 </select>
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="txtUnidadResponsable">PROGRAMA/PROY.INVERSION</label>
+                                    <label class="input-group-text" for="txtUnidadResponsable">UnidadResponsable</label>
                                 </div>
-                                <select class="custom-select" id="cboBuscarUnidadResponsable">
+                                <select class="custom-select" id="cboUnidadResponsable">
                                 </select>
                             </div>
                             <div class="input-group input-group-sm mb-3">
