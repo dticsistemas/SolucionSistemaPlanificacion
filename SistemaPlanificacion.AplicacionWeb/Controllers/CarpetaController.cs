@@ -13,7 +13,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
     public class CarpetaController : Controller
     {
         private readonly ITipodocumentoService _tipodocumentoService;
-        private readonly ICarpetaService _capetaService;
+        private readonly ICarpetaService _carpetaService;
         private readonly IUnidadresponsableService _unidadResponsableServicio;
         private readonly IProgramaService _programaServicio;
         private readonly IMapper _mapper;
@@ -23,7 +23,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         public CarpetaController(ITipodocumentoService tipodocumento, ICarpetaService carpetaService, IUnidadresponsableService unidadResponsableServicio, IProgramaService programaServicio, IMapper mapper, IConverter converter)
         {
             _tipodocumentoService = tipodocumento;
-            _capetaService = carpetaService;
+            _carpetaService = carpetaService;
             _mapper = mapper;
             _converter = converter;
             _unidadResponsableServicio = unidadResponsableServicio;
@@ -37,6 +37,10 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         public IActionResult Historial()
         {
             return View();
+        }       
+        public IActionResult ListadoCarpeta()
+        {
+            return View();
         }
         [HttpGet]
         public async Task<IActionResult> ListaTipoDocumentoCarpeta()
@@ -47,7 +51,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> ObtenerPartidasPresupuestarias(string busqueda)
         {
-            List<VMPartidaPresupuestaria> vmListaPartidasPresupuestarias = _mapper.Map<List<VMPartidaPresupuestaria>>(await _capetaService.ObtenerPartidasPresupuestarias(busqueda));
+            List<VMPartidaPresupuestaria> vmListaPartidasPresupuestarias = _mapper.Map<List<VMPartidaPresupuestaria>>(await _carpetaService.ObtenerPartidasPresupuestarias(busqueda));
             return StatusCode(StatusCodes.Status200OK, vmListaPartidasPresupuestarias);
 
         }
@@ -58,7 +62,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
             try
             {
                 //modelo.IdRegional = 1;
-                CarpetaRequerimiento carpeta_creada = await _capetaService.Registrar(_mapper.Map<CarpetaRequerimiento>(modelo));
+                CarpetaRequerimiento carpeta_creada = await _carpetaService.Registrar(_mapper.Map<CarpetaRequerimiento>(modelo));
 
                 modelo = _mapper.Map<VMCarpetaRequerimiento>(carpeta_creada);
                 gResponse.Estado = true;
@@ -78,7 +82,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
                 fechaInicio = fechaInicio.Trim();
             if(fechaFin!=null)
                 fechaFin = fechaFin.Trim();
-            var service = await _capetaService.Historial(numeroCarpeta, fechaInicio, fechaFin);
+            var service = await _carpetaService.Historial(numeroCarpeta, fechaInicio, fechaFin);
             List<VMCarpetaRequerimiento> vmHistorialCarpeta = _mapper.Map<List<VMCarpetaRequerimiento>>(service);
             return StatusCode(StatusCodes.Status200OK, vmHistorialCarpeta);
         }
@@ -117,6 +121,12 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         {
             List<VMPrograma> vmListaProgramas = _mapper.Map<List<VMPrograma>>(await _programaServicio.Lista());
             return StatusCode(StatusCodes.Status200OK, vmListaProgramas);
+        }
+        [HttpGet]
+        public async Task<IActionResult> ListaMisCarpetas()
+        {
+            List<VMCarpetaRequerimiento> vmListaCarpetas = _mapper.Map<List<VMCarpetaRequerimiento>>(await _carpetaService.Lista());           
+            return StatusCode(StatusCodes.Status200OK, new { data = vmListaCarpetas });
         }
 
     }

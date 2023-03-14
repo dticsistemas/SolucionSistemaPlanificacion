@@ -92,5 +92,10 @@ namespace SistemaPlanificacion.BLL.Implementacion
             return lista;
 
         }
+        public async Task<List<CarpetaRequerimiento>> Lista()
+        {
+            IQueryable<CarpetaRequerimiento> query = await _repositorioCarpeta.Consultar();
+            return query.Include(dv => dv.DetalleCarpeta).ToList();
+        }
     }
 }

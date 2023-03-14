@@ -273,7 +273,9 @@ $(document).ready(function () {
                 console.log("-Carpeta Registrada-");
                 PartidasParaCarpeta = [];
                 mostrarItemDetalle();
+                $("#txtCiteUnidadSolicitante").val("");
                 swal("Registrado!!", 'Carpeta Registrada', "success")
+
             //} else {
                 console.log("-No se pudo registrar Carpeta -");
             //} 

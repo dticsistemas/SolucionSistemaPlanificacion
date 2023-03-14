@@ -14,5 +14,6 @@ namespace SistemaPlanificacion.BLL.Interfaces
         Task<List<CarpetaRequerimiento>> Historial(string numeroCarpeta, string fechaInicio, string fechaFin);
         Task<CarpetaRequerimiento> Detalle(string numeroCarpeta);
         Task<List<DetalleCarpetum>> Reporte(string fechaInicio, string fechaFin);
+        Task<List<CarpetaRequerimiento>> Lista();
     }
 }
