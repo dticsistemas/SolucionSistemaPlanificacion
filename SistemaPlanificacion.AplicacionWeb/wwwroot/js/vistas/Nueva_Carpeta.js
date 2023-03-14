@@ -14,8 +14,25 @@ let tablaData;
 
 let PartidasParaCarpeta = [];
 
+
+
 $(document).ready(function () {
 
+    $.datepicker.setDefaults($.datepicker.regional["es"])
+
+    $("#txtFechaRegistro").datepicker({
+        dateFormat: " dd/mm/yy",
+        defaultDate: new Date()
+    })
+    let date = new Date()
+    let day = `${(date.getDate())}`.padStart(2, '0');
+    let month = `${(date.getMonth() + 1)}`.padStart(2, '0');
+    let year = date.getFullYear();
+
+
+    $("#txtFechaRegistro").val(`${day}/${month}/${year}`)
+    
+    
     fetch("/Carpeta/ListaUnidadresponsable")
         .then(response => {
             return response.ok ? response.json() : Promise.reject(response);

@@ -7,6 +7,7 @@
     <!-- ============================================================
     =ESTILOS PARA ESTA PAGINA
     ===============================================================-->
+    <link href="~/vendor/jquery-ui/jquery-ui.css" rel="stylesheet">
     <link href="~/vendor/select2/select2.min.css" rel="stylesheet">
     <style>
         .select2 {
@@ -36,7 +37,7 @@
                                 <div class="form-group col-sm-3">
                                     <div class="input-group">
                                         <label>CITE: &nbsp; </label>
-                                        <input type="text" class="form-control form-control-sm" id="txtCiteUnidadSolicitante" placeholder="Cite Unidad Solicitante">
+                                        <input type="text" class="form-control form-control-sm" id="txtCiteUnidadSolicitante" placeholder="Cite Unidad Solicitante" required>
                                     </div>
                                 </div>
                             </div>
@@ -54,9 +55,10 @@
                                     <div class="input-group">
                                         Fecha: &nbsp;
                                         <span class="input-group-addon">&nbsp;</span>
-                                        <input type="date" class="form-control" id="txtFechaRegistro" placeholder="Fecha Registro">
+                                        <input type="text" class="form-control" id="txtFechaRegistro" placeholder="Fecha Registro">
                                     </div>
-                                </div>
+                                    
+                                </div>                               
                                 
                             </div>
                             <!--<div class="form-row">
@@ -211,6 +213,10 @@
     <script src="~/vendor/select2/select2.min.js"></script>
     <script src="~/vendor/select2/es.min.js"></script>
     <script src="~/js/vistas/Nueva_Carpeta.js"></script>
+
+
+    <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="~/vendor/jquery-ui/idioma/datepicker-es.js"></script>
 }
 
 
