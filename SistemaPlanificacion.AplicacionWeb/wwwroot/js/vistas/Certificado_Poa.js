@@ -26,17 +26,17 @@ $(document).ready(function () {
             {
                 "data": "estadoCarpeta", render: function (data) {
                     if (data == 1)
-                        return '<span class="badge badge-info">Activo</span>';
+                        return '<span class="badge badge-info">Certificado</span>';
                     else
-                        return '<span class="badge badge-info">Registrado</span>';
+                        return '<span class="badge badge-warning">Pendiente</span>';
                 }
-            },           
-           //{ "data": "unidadSolicitante" },
+            },
+            //{ "data": "unidadSolicitante" },
             { "data": "fechaRegistro" },
             {
-                "defaultContent":'<div class="form-inline">'+
-                    '<button class="btn btn-info btn-ver btn-sm"><i class="fas fa-eye"></i></button>' +
-                    '<button class="btn btn-primary btn-editar btn-sm"><i class="fas fa-pencil-alt"></i></button>' +
+                "defaultContent": '<div class="form-inline">' +
+                    '<button class="btn btn-info btn-certificar btn-sm"><i class="fas fa-edit"></i> Certificar</button> ' +
+                    '<button class="btn btn-primary btn-editar btn-sm"><i class="fas fa-pencil-alt"></i></button> ' +
                     '<button class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i></button>' +
                     '</div>',
                 "orderable": false,
@@ -66,7 +66,7 @@ $(document).ready(function () {
 
 let filaSeleccionada;
 
-$("#tbdata tbody").on("click", ".btn-ver", function () {
+$("#tbdata tbody").on("click", ".btn-certificar", function () {
     if ($(this).closest("tr").hasClass("child")) {
         filaSeleccionada = $(this).closest("tr").prev();
     }
@@ -75,34 +75,12 @@ $("#tbdata tbody").on("click", ".btn-ver", function () {
     }
 
     const data = tablaData.row(filaSeleccionada).data();
-   
-    $("#txtFechaRegistro").val(data.fechaRegistro)
-    $("#txtNumVenta").val(data.numeroCarpeta)
-    $("#txtUsuarioRegistro").val(data.idRegional)
-    $("#txtTipoDocumento").val(data.citeUnidadPlanificacion)
-    $("#txtDocumentoCliente").val(data.operacion)
-    $("#txtNombreCliente").val(data.unidadResponsable)
-    $("#txtSubTotal").val(data.tipo)
-    $("#txtIGV").val(data.estado)
-    $("#txtTotal").val(data.montoTotal)    
-    $("#tbProductos tbody").html("")
-    cont = 0;
-    data.detalleCarpeta.forEach((item) => {
-        cont++;
-        $("#tbProductos tbody").append(
-            $("<tr>").append(
-                $("<td>").text(cont),
-                $("<td>").text(item.detalle),
-                $("<td>").text(item.partida),
-                $("<td>").text(item.unidadMedida),
-                $("<td>").text(item.precioTotal)
-            )
-        )
-    })
-    $("#linkImprimir").attr("href", `/Carpeta/MostrarPDFCarpeta?numeroCarpeta=${data.numeroCarpeta}`);
-    $("#modalData").modal("show");
+
+    $("#linkImprimir").attr("href", `/Carpeta/CertificarCarpeta=${data.numeroCarpeta}`);
 
 })
+
+
 
 $("#tbdata tbody").on("click", ".btn-eliminar", function () {
 
@@ -132,25 +110,25 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function () {
             if (respuesta) {
                 $(".showSweetalert").LoadingOverlay("show");
                 alert('TEST');
-               /* fetch(`/Empresa/Eliminar?IdEmpresa=${data.idEmpresa}`, {
-                    method: "DELETE"
-                })
-                    .then(response => {
-                        $(".showSweetalert").LoadingOverlay("hide");
-                        return response.ok ? response.json() : Promise.reject(response);
-                    })
-                    .then(responseJson => {
-
-                        if (responseJson.estado) {
-
-                            tablaData.row(fila).remove().draw()
-
-                            swal("Listo!", "La Empresa Fue Eliminada", "success")
-                        }
-                        else {
-                            swal("Lo Sentimos", responseJson.mensaje, "error")
-                        }
-                    })*/
+                /* fetch(`/Empresa/Eliminar?IdEmpresa=${data.idEmpresa}`, {
+                     method: "DELETE"
+                 })
+                     .then(response => {
+                         $(".showSweetalert").LoadingOverlay("hide");
+                         return response.ok ? response.json() : Promise.reject(response);
+                     })
+                     .then(responseJson => {
+ 
+                         if (responseJson.estado) {
+ 
+                             tablaData.row(fila).remove().draw()
+ 
+                             swal("Listo!", "La Empresa Fue Eliminada", "success")
+                         }
+                         else {
+                             swal("Lo Sentimos", responseJson.mensaje, "error")
+                         }
+                     })*/
             }
         }
     )
@@ -166,7 +144,7 @@ $("#tbdata tbody").on("click", ".btn-editar", function () {
 
     const data = tablaData.row(filaSeleccionada).data();
 
-   // mostrarModal(data);
+    // mostrarModal(data);
     alert("Editar Carpeta Requerimiento PENDIENTE......");
 })
 

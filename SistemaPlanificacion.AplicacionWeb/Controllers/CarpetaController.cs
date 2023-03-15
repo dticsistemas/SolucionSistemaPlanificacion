@@ -42,6 +42,10 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         {
             return View();
         }
+        public IActionResult CertificadoPoa()
+        {
+            return View();
+        }
         [HttpGet]
         public async Task<IActionResult> ListaTipoDocumentoCarpeta()
         {
