@@ -34,8 +34,11 @@ $(document).ready(function () {
            //{ "data": "unidadSolicitante" },
             { "data": "fechaRegistro" },
             {
-                "defaultContent": '<button class="btn btn-primary btn-editar btn-sm mr-2"><i class="fas fa-pencil-alt"></i></button>' +
-                    '<button class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i></button>',
+                "defaultContent":'<div class="form-inline">'+
+                    '<button class="btn btn-info btn-ver btn-sm"><i class="fas fa-eye"></i></button>' +
+                    '<button class="btn btn-primary btn-editar btn-sm"><i class="fas fa-pencil-alt"></i></button>' +
+                    '<button class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i></button>' +
+                    '</div>',
                 "orderable": false,
                 "searchable": false,
                 "width": "80px"
@@ -59,3 +62,46 @@ $(document).ready(function () {
         },
     });
 })
+
+
+let filaSeleccionada;
+
+$("#tbdata tbody").on("click", ".btn-ver", function () {
+    if ($(this).closest("tr").hasClass("child")) {
+        filaSeleccionada = $(this).closest("tr").prev();
+    }
+    else {
+        filaSeleccionada = $(this).closest("tr")
+    }
+
+    const data = tablaData.row(filaSeleccionada).data();
+   
+    $("#txtFechaRegistro").val(data.fechaRegistro)
+    $("#txtNumVenta").val(data.numeroCarpeta)
+    $("#txtUsuarioRegistro").val(data.idRegional)
+    $("#txtTipoDocumento").val(data.citeUnidadPlanificacion)
+    $("#txtDocumentoCliente").val(data.operacion)
+    $("#txtNombreCliente").val(data.unidadResponsable)
+    $("#txtSubTotal").val(data.tipo)
+    $("#txtIGV").val(data.estado)
+    $("#txtTotal").val(data.montoTotal)    
+    $("#tbProductos tbody").html("")
+    cont = 0;
+    data.detalleCarpeta.forEach((item) => {
+        cont++;
+        $("#tbProductos tbody").append(
+            $("<tr>").append(
+                $("<td>").text(cont),
+                $("<td>").text(item.detalle),
+                $("<td>").text(item.partida),
+                $("<td>").text(item.unidadMedida),
+                $("<td>").text(item.precioTotal)
+            )
+        )
+    })
+    $("#linkImprimir").attr("href", `/Carpeta/MostrarPDFCarpeta?numeroCarpeta=${data.numeroCarpeta}`);
+    $("#modalData").modal("show");
+
+})
+
+

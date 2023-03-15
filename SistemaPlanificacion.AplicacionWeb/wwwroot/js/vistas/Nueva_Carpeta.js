@@ -236,7 +236,6 @@ $(document).ready(function () {
       //  alert(vmDetalleCarpeta);
         console.log(vmDetalleCarpeta);
         const carpetaRequerimiento = {
-
             IdCarpeta: 1,// $("#txtNombre").val(), default
             NumeroCarpeta: "1200",//$("#txtNombre").val(),
             IdRegional: 1, //$("#txtNombre").val(),

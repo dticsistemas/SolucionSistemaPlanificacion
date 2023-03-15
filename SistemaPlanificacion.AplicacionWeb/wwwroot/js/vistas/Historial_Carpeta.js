@@ -106,11 +106,9 @@ $("#btnBuscar").click(function () {
                         venta.montoTotal,
                         "<button id='btnRow_" + counter + "' class='btn btn-info btn-sm'><i class='fas fa-eye' </buttton>"
                     ]).draw(true);
-                    $("#btnRow_" + counter).data("venta", venta);
-                    
+                    $("#btnRow_" + counter).data("venta", venta);                    
                 })
             }
-
             //---------------------------
         })
 })
