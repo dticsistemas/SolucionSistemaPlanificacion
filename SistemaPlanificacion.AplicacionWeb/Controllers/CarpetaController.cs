@@ -42,7 +42,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         {
             return View();
         }
-        public IActionResult CertificadoPoa()
+        public IActionResult CertificarPlanificacion()
         {
             return View();
         }
