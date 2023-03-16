@@ -42,8 +42,21 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         {
             return View();
         }
-        public IActionResult CertificarPlanificacion()
+        public IActionResult ListadoPlanificacion()
         {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult CertificarPlanificacion(string numeroCarpeta)
+        {
+           /* if (fechaInicio != null)
+                fechaInicio = fechaInicio.Trim();
+            if (fechaFin != null)
+                fechaFin = fechaFin.Trim();
+            var service = await _carpetaService.Historial(numeroCarpeta, fechaInicio, fechaFin);
+            List<VMCarpetaRequerimiento> vmHistorialCarpeta = _mapper.Map<List<VMCarpetaRequerimiento>>(service);
+            return StatusCode(StatusCodes.Status200OK, vmHistorialCarpeta);*/
+
             return View();
         }
         [HttpGet]
@@ -132,6 +145,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
             List<VMCarpetaRequerimiento> vmListaCarpetas = _mapper.Map<List<VMCarpetaRequerimiento>>(await _carpetaService.Lista());           
             return StatusCode(StatusCodes.Status200OK, new { data = vmListaCarpetas });
         }
+
 
     }
 }

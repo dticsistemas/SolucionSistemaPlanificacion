@@ -35,7 +35,7 @@ $(document).ready(function () {
             { "data": "fechaRegistro" },
             {
                 "defaultContent": '<div class="form-inline">' +
-                    '<button class="btn btn-info btn-certificar btn-sm"><i class="fas fa-edit"></i> Certificar</button> ' +
+                    '<button class="btn btn-info btn-certificar btn-sm" href=""><i class="fas fa-edit"></i> Certificar</button> ' +
                     '<button class="btn btn-primary btn-editar btn-sm"><i class="fas fa-pencil-alt"></i></button> ' +
                     '<button class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i></button>' +
                     '</div>',
@@ -76,7 +76,8 @@ $("#tbdata tbody").on("click", ".btn-certificar", function () {
 
     const data = tablaData.row(filaSeleccionada).data();
 
-    $("#linkImprimir").attr("href", `/Carpeta/CertificarCarpeta=${data.numeroCarpeta}`);
+    window.location.href = `/Carpeta/CertificarPlanificacion/numeroCarpeta=${data.numeroCarpeta}`;
+
 
 })
 
