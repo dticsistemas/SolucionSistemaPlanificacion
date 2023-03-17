@@ -47,17 +47,14 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult CertificarPlanificacion(string numeroCarpeta)
+        public async Task<IActionResult> CertificarPlanificacionAsync(string numeroCarpeta)
         {
-           /* if (fechaInicio != null)
-                fechaInicio = fechaInicio.Trim();
-            if (fechaFin != null)
-                fechaFin = fechaFin.Trim();
-            var service = await _carpetaService.Historial(numeroCarpeta, fechaInicio, fechaFin);
-            List<VMCarpetaRequerimiento> vmHistorialCarpeta = _mapper.Map<List<VMCarpetaRequerimiento>>(service);
-            return StatusCode(StatusCodes.Status200OK, vmHistorialCarpeta);*/
+            numeroCarpeta = "000055";
+            VMCarpetaRequerimiento vmCarpeta = _mapper.Map<VMCarpetaRequerimiento>(await _carpetaService.Detalle(numeroCarpeta));
+            VMPDFCarpeta modelo = new VMPDFCarpeta();
+            modelo.carpeta = vmCarpeta;
 
-            return View();
+            return View(modelo);
         }
         [HttpGet]
         public async Task<IActionResult> ListaTipoDocumentoCarpeta()
