@@ -51,5 +51,7 @@ namespace SistemaPlanificacion.Entity
         public virtual ICollection<DetalleCarpetum> DetalleCarpeta { get; set; } = new List<DetalleCarpetum>();
 
         public virtual Actividad IdActividadNavigation { get; set; } = null!;
+
+       // public virtual CertificacionPoa? CertificacionPoa { get; set; }
     }
 }

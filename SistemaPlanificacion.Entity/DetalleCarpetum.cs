@@ -31,6 +31,9 @@ namespace SistemaPlanificacion.Entity
         public decimal? MontoAdjudicado { get; set; }
 
         public virtual CarpetaRequerimiento? IdCarpetaNavigation { get; set; }
+
+        public virtual DetalleCertificacionPoa? DetalleCertificacionPoa { get; set; }
+
     }
 
 }

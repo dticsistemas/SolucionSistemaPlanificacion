@@ -95,6 +95,12 @@ namespace SistemaPlanificacion.AplicacionWeb.Utilidades.Automapper
             #region UnidadResponsable
             CreateMap<UnidadResponsable, VMUnidadResponsable>().ReverseMap();
             #endregion
+            #region CertificacionPoa
+            CreateMap<CertificacionPoa, VMCertificacionPoa>().ReverseMap();
+            #endregion
+            #region DetalleCertificacionPoa
+            CreateMap<DetalleCertificacionPoa, VMDetalleCertificacionPoa>().ReverseMap();
+            #endregion
         }
     }
 }

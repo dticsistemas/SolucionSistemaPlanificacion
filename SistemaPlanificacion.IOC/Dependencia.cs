@@ -44,6 +44,7 @@ namespace SistemaPlanificacion.IOC
             services.AddScoped<ITipodocumentoService, TipodocumentoService>();
             services.AddScoped<ICarpetaService, CarpetaService>();
             services.AddScoped<IUnidadresponsableService, UnidadResponsableService>();
+            services.AddScoped<ICertificacionPoaService, CertificacionPoaService>();
 
         }
     }
