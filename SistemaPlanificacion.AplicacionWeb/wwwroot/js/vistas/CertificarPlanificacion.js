@@ -16,11 +16,13 @@ function guardarCertificacionPOA(){
    var montoTotal=0;
     var count = $('#tbdatos').children().length;  
     var vmDetalle = [];
+    var montoTotal = 0;
    
     if ($('#textCodigoCertificacion').val() != '') {
         var tbl = $("#tbdatos").children();           
         var contador = 0;
         var montosVacios = false;
+        
       
 
         $("#tbdatos").children().each(function () {
@@ -39,31 +41,25 @@ function guardarCertificacionPOA(){
             //console.log(item);
             vmDetalle.push(item);
             //console.log(vmDetalle);
+            montoTotal = parseFloat(montoTotal) + parseFloat(txtMontoPresupuesto);
         });
+
         if (montosVacios) {
             swal("Lo Sentimos", "Ingrese los montos Presupuestarios", "warning")
         } else {
             //--------------------------------------           
-            alert("enviando datos");
-            /* const vmDetalleCarpeta = PartidasParaCarpeta;
-            alert(vmDetalleCarpeta);
-            console.log(vmDetalleCarpeta);
-            */
 
             const carpetaRequerimiento = {
-                //IdCertificacionPoa: 1,// $("#txtNombre").val(), default
-                IdCarpeta: "53",
-                Codigo: "1", 
-                TotalCertificado: 0,
-                //FechaRegistro: "",
+                IdCarpeta: $("#txtIdCarpeta").val(),
+                Codigo: $("#textCodigoCertificacion").val(),
+                TotalCertificado: montoTotal,
                 EstadoCertificacion: "A",
                 IdUsuario: 1, 
                 DetalleCertificacionPoas: vmDetalle
             }
-            /*
             console.log(carpetaRequerimiento);
-            $("#btnTerminarCarpeta").closest("div.card-body").LoadingOverlay("show");
-            */
+            $("#btnTerminarCarpeta").LoadingOverlay("show");
+            
             fetch("/CertificacionPoa/Crear", {
                 method: "POST",
                 headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -71,17 +67,17 @@ function guardarCertificacionPOA(){
             }).then(response => {
                 console.log("----response: ");
               //  console.log(response);
-              //  $("#btnTerminarCarpeta").closest("div.card-body").LoadingOverlay("hide");
-                //  if (response.ok) {
-               // console.log("-Carpeta Registrada-");
+                $("#btnTerminarCarpeta").LoadingOverlay("hide");
+                if (response.ok) {
+                console.log("-Carpeta Registrada-");
                // PartidasParaCarpeta = [];
                // mostrarItemDetalle();
-               // $("#txtCiteUnidadSolicitante").val("");
-               // swal("Registrado!!", 'Carpeta Registrada', "success")
+                    $("#textCodigoCertificacion").val("");
+                    swal("Registrado!!", 'Certifiacion Poa Registrada', "success")
 
-                //} else {
-                console.log("-No se pudo registrar Carpeta -");
-                //} 
+                } else {
+                    swal("No se puedo Registrar!!", 'Error al intentar Registrar la Certifiacion Poa', "warning")
+                } 
 
                 return response.ok ? response.json() : Promise.reject(response);
             }).then(responseJson => {

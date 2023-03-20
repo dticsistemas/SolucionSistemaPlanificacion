@@ -49,7 +49,7 @@ namespace SistemaPlanificacion.AplicacionWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> CertificarPlanificacionAsync(string numeroCarpeta)
         {
-            numeroCarpeta = "000055";
+            //numeroCarpeta = "000055";
             VMCarpetaRequerimiento vmCarpeta = _mapper.Map<VMCarpetaRequerimiento>(await _carpetaService.Detalle(numeroCarpeta));
             VMPDFCarpeta modelo = new VMPDFCarpeta();
             modelo.carpeta = vmCarpeta;

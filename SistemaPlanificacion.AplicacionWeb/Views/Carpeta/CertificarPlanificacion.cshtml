@@ -23,7 +23,7 @@
                     <h6 class="m-0 font-weight-bold text-white">Formulario Certificar POA (Planificacion) </h6>
                 </div>
                 <div class="card-body">
-
+                    <input id="txtIdCarpeta" type="hidden" value="@Model.carpeta.IdCarpeta">
                     <hr />
                     <div class="row">
                         <div class="col-sm-12"> <h2 class="text-center"><b>CERTIFICACION DEL PLAN OPERATIVO ANUAL</b></h2></div>
@@ -121,7 +121,7 @@
 
                 <div class="card-footer text-center">                
                     <a class="btn btn-default" href="~/Carpeta/ListadoPlanificacion">Cancelar </a>
-                    <button type="button" class="btn btn-primary" onclick="guardarCertificacionPOA()">Guardar Certificacion Planificación POA</button>
+                <button type="button" class="btn btn-primary" id="btnTerminarCarpeta" onclick="guardarCertificacionPOA()">Guardar Certificacion Planificación POA</button>
                     
                 </div>
             </div>
